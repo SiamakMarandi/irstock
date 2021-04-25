@@ -1,0 +1,388 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Filter Me!</h1>
+<br><br><br>
+
+<form action="{% url 'prepared_filter' %}"  class= form-inline method="POST">  
+    {% csrf_token%}
+
+    <div class="container">       
+       
+        <div class="row mb-4 filtering">
+         
+            <div class="col ">
+                <select name="prepared_filters1" id="prepared_filters1" class="form-select form-select-lg mb-3" aria-label="Default select example">
+                    <option selected>انتخاب فیلتر مورد نظر</option>
+                    <option value="prediction_tomorrow">احتمال صف خرید فردا</option>
+                    <option value="volume_increase">افزایش حجم معاملات نسبت به روزهای قبل</option>
+                    <option value="up_clock_pattern">الگوی ساعت صعودی</option>
+                    <option value="up_to_down_today">امروز از مثبت به منفی رفته‌اند</option>
+                    <option value="down_to_up_today">امروز از منفی به مثبت رفته‌اند</option>
+                    <option value="maximum_neg_pos_final">بیشترین درصد منفی آخرین و پایانی در معاملات بورس</option>
+                    <option value="co_buyer_2more_co_seller">تعداد خریداران حقوقی بیش از 2 برابر تعداد فروشندگان حقوقی و قدرت خریداران حقیقی بیشتر از قدرت فروشندگان حقیقی</option>
+                    <option value="up_hammer">چکش صعودی</option>
+                    <option value="less_basis_volume">حجم مبنای کم</option>
+                    <option value="buy_volume_4more_sell">حجم خرید ۴ برابر حجم فروش</option>
+                    <option value="suspect_volume1">1حجم های مشکوک بازار</option>
+                    <option value="today_volume_2more_monthly_volume">حجم معاملات امروز دو برابر میانگین حجم ماهانه</option>
+                    <option value="buy_queue_last_3days">حداقل 3 روز اخیر صف خرید</option>
+                    <option value="sell_queue_last_3days">حداقل 3 روز اخیر صف فروش</option>
+                    <option value="exit_money">1خروج پول</option>
+                    <option value="exit_money2">2خروج پول</option>
+                    <option value="exit_money3">3خروج پول</option>
+                    <option value="exit_money_co_to_real_cod1">خروج پول و کد به کد حقیقی به حقوقی1</option>
+                    <option value="exit_money_co_to_real_cod2">خروج پول و کد به کد حقیقی به حقوقی2</option>
+                    <option value="exit_money_co_to_real_cod3">خروج پول و کد به کد حقیقی به حقوقی3</option>
+                    <option value="smart_money_exit1">1خروج پول هوشمند</option>
+                    <option value="smart_money_exit2">2خروج پول هوشمند</option>
+                    <option value="smart_money_exit3">3خروج پول هوشمند</option> 
+                    <option value="smart_money_exit_co_to_real_cod1">1خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod2">2خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod3">3خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="down_to_up_price">در حال برگشت قیمتی از منفی به مثبت</option>
+                    <option value="down_to_up_trend">در حال برگشت روند از منفی به مثبت</option>
+                    <option value="buy_queue_starting1">در حال صف خرید شدن1</option>
+                    <option value="buy_queue_starting2">در حال صف خرید شدن2</option>
+                    <option value="buy_queue_starting3">در حال صف خرید شدن3</option>
+                    <option value="buy_queue_starting4">در حال صف خرید شدن4</option>
+                    <option value="up_trend_channel_starting">شروع کانال صعودی احتمالی</option>
+                    <option value="sell_queue">صف خرید</option>
+                    <option value="buy_queue">صف فروش</option>  
+                    <option value="co_seller_5more_than_co_buyer">فروشندگان حقوقی بیش از 5 برابر تعداد خریداران حقوقی</option>
+                    <option value="co_to_real_cod1">1کد به کد حقوقی به حقیقی</option>   
+                    <option value="co_to_real_cod2">2کد به کد حقوقی به حقیقی</option>  
+                    <option value="real_to_co_cod1">کد به کد حقیقی به حقوقی1</option>
+                    <option value="real_to_co_cod2">کد به کد حقیقی به حقوقی2</option>
+                    <option value="month_price_floor">کف قیمت ماهانه</option>
+                    <option value="price_floor_increase_capital">کف قیمتی سه ماهه + افزایش نقدینگی</option>
+                    <option value="candle_inverted_hammer">کندل ستاره ثاقب یا چکش وارونه</option>
+                    <option value="candle_doji">کندل دوجی سنجاقک</option>
+                    <option value="smart_money_enter1">ورود پول هوشمند 1</option>
+                    <option value="smart_money_enter2">ورود پول هوشمند 2</option>
+                    <option value="smart_money_enter3">ورود پول هوشمند 3</option>
+                    <option value="smart_money_enter_co_tp_real_cod1">1ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod2">2ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod3">3ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                  
+                    
+
+                </select>
+
+                <!-- <input type="text" class="form-control mb-8 mr-sm-8" list="filter_name" placeholder="نوع فیلتر" name="prepared_filters" class="filter"> -->
+
+            </div>
+        </div> 
+        <div class="row mb-4 filtering">
+         
+            <div class="col ">
+                <select name="prepared_filters2" id="prepared_filters2" class="form-select form-select-lg mb-3" aria-label="Default select example">
+                    <option selected>انتخاب فیلتر مورد نظر</option>
+                    <option value="prediction_tomorrow">احتمال صف خرید فردا</option>
+                    <option value="volume_increase">افزایش حجم معاملات نسبت به روزهای قبل</option>
+                    <option value="up_clock_pattern">الگوی ساعت صعودی</option>
+                    <option value="up_to_down_today">امروز از مثبت به منفی رفته‌اند</option>
+                    <option value="down_to_up_today">امروز از منفی به مثبت رفته‌اند</option>
+                    <option value="maximum_neg_pos_final">بیشترین درصد منفی آخرین و پایانی در معاملات بورس</option>
+                    <option value="co_buyer_2more_co_seller">تعداد خریداران حقوقی بیش از 2 برابر تعداد فروشندگان حقوقی و قدرت خریداران حقیقی بیشتر از قدرت فروشندگان حقیقی</option>
+                    <option value="up_hammer">چکش صعودی</option>
+                    <option value="less_basis_volume">حجم مبنای کم</option>
+                    <option value="buy_volume_4more_sell">حجم خرید ۴ برابر حجم فروش</option>
+                    <option value="suspect_volume1">1حجم های مشکوک بازار</option>
+                    <option value="today_volume_2more_monthly_volume">حجم معاملات امروز دو برابر میانگین حجم ماهانه</option>
+                    <option value="buy_queue_last_3days">حداقل 3 روز اخیر صف خرید</option>
+                    <option value="sell_queue_last_3days">حداقل 3 روز اخیر صف فروش</option>
+                    <option value="exit_money">1خروج پول</option>
+                    <option value="exit_money2">2خروج پول</option>
+                    <option value="exit_money3">3خروج پول</option>
+                    <option value="exit_money_co_to_real_cod1">خروج پول و کد به کد حقیقی به حقوقی1</option>
+                    <option value="exit_money_co_to_real_cod2">خروج پول و کد به کد حقیقی به حقوقی2</option>
+                    <option value="exit_money_co_to_real_cod3">خروج پول و کد به کد حقیقی به حقوقی3</option>
+                    <option value="smart_money_exit1">1خروج پول هوشمند</option>
+                    <option value="smart_money_exit2">2خروج پول هوشمند</option>
+                    <option value="smart_money_exit3">3خروج پول هوشمند</option> 
+                    <option value="smart_money_exit_co_to_real_cod1">1خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod2">2خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod3">3خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="down_to_up_price">در حال برگشت قیمتی از منفی به مثبت</option>
+                    <option value="down_to_up_trend">در حال برگشت روند از منفی به مثبت</option>
+                    <option value="buy_queue_starting1">در حال صف خرید شدن1</option>
+                    <option value="buy_queue_starting2">در حال صف خرید شدن2</option>
+                    <option value="buy_queue_starting3">در حال صف خرید شدن3</option>
+                    <option value="buy_queue_starting4">در حال صف خرید شدن4</option>
+                    <option value="up_trend_channel_starting">شروع کانال صعودی احتمالی</option>
+                    <option value="sell_queue">صف خرید</option>
+                    <option value="buy_queue">صف فروش</option>  
+                    <option value="co_seller_5more_than_co_buyer">فروشندگان حقوقی بیش از 5 برابر تعداد خریداران حقوقی</option>
+                    <option value="co_to_real_cod1">1کد به کد حقوقی به حقیقی</option>   
+                    <option value="co_to_real_cod2">2کد به کد حقوقی به حقیقی</option>  
+                    <option value="real_to_co_cod1">کد به کد حقیقی به حقوقی1</option>
+                    <option value="real_to_co_cod2">کد به کد حقیقی به حقوقی2</option>
+                    <option value="month_price_floor">کف قیمت ماهانه</option>
+                    <option value="price_floor_increase_capital">کف قیمتی سه ماهه + افزایش نقدینگی</option>
+                    <option value="candle_inverted_hammer">کندل ستاره ثاقب یا چکش وارونه</option>
+                    <option value="candle_doji">کندل دوجی سنجاقک</option>
+                    <option value="smart_money_enter1">ورود پول هوشمند 1</option>
+                    <option value="smart_money_enter2">ورود پول هوشمند 2</option>
+                    <option value="smart_money_enter3">ورود پول هوشمند 3</option>
+                    <option value="smart_money_enter_co_tp_real_cod1">1ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod2">2ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod3">3ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                  
+                    
+
+                </select>
+
+                <!-- <input type="text" class="form-control mb-8 mr-sm-8" list="filter_name" placeholder="نوع فیلتر" name="prepared_filters" class="filter"> -->
+
+            </div>
+        </div> 
+
+
+        <div class="row mb-4 filtering">
+         
+            <div class="col ">
+                <select name="prepared_filters3" id="prepared_filters3" class="form-select form-select-lg mb-3" aria-label="Default select example">
+                    <option selected>انتخاب فیلتر مورد نظر</option>
+                    <option value="prediction_tomorrow">احتمال صف خرید فردا</option>
+                    <option value="volume_increase">افزایش حجم معاملات نسبت به روزهای قبل</option>
+                    <option value="up_clock_pattern">الگوی ساعت صعودی</option>
+                    <option value="up_to_down_today">امروز از مثبت به منفی رفته‌اند</option>
+                    <option value="down_to_up_today">امروز از منفی به مثبت رفته‌اند</option>
+                    <option value="maximum_neg_pos_final">بیشترین درصد منفی آخرین و پایانی در معاملات بورس</option>
+                    <option value="co_buyer_2more_co_seller">تعداد خریداران حقوقی بیش از 2 برابر تعداد فروشندگان حقوقی و قدرت خریداران حقیقی بیشتر از قدرت فروشندگان حقیقی</option>
+                    <option value="up_hammer">چکش صعودی</option>
+                    <option value="less_basis_volume">حجم مبنای کم</option>
+                    <option value="buy_volume_4more_sell">حجم خرید ۴ برابر حجم فروش</option>
+                    <option value="suspect_volume1">1حجم های مشکوک بازار</option>
+                    <option value="today_volume_2more_monthly_volume">حجم معاملات امروز دو برابر میانگین حجم ماهانه</option>
+                    <option value="buy_queue_last_3days">حداقل 3 روز اخیر صف خرید</option>
+                    <option value="sell_queue_last_3days">حداقل 3 روز اخیر صف فروش</option>
+                    <option value="exit_money">1خروج پول</option>
+                    <option value="exit_money2">2خروج پول</option>
+                    <option value="exit_money3">3خروج پول</option>
+                    <option value="exit_money_co_to_real_cod1">خروج پول و کد به کد حقیقی به حقوقی1</option>
+                    <option value="exit_money_co_to_real_cod2">خروج پول و کد به کد حقیقی به حقوقی2</option>
+                    <option value="exit_money_co_to_real_cod3">خروج پول و کد به کد حقیقی به حقوقی3</option>
+                    <option value="smart_money_exit1">1خروج پول هوشمند</option>
+                    <option value="smart_money_exit2">2خروج پول هوشمند</option>
+                    <option value="smart_money_exit3">3خروج پول هوشمند</option> 
+                    <option value="smart_money_exit_co_to_real_cod1">1خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod2">2خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod3">3خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="down_to_up_price">در حال برگشت قیمتی از منفی به مثبت</option>
+                    <option value="down_to_up_trend">در حال برگشت روند از منفی به مثبت</option>
+                    <option value="buy_queue_starting1">در حال صف خرید شدن1</option>
+                    <option value="buy_queue_starting2">در حال صف خرید شدن2</option>
+                    <option value="buy_queue_starting3">در حال صف خرید شدن3</option>
+                    <option value="buy_queue_starting4">در حال صف خرید شدن4</option>
+                    <option value="up_trend_channel_starting">شروع کانال صعودی احتمالی</option>
+                    <option value="sell_queue">صف خرید</option>
+                    <option value="buy_queue">صف فروش</option>  
+                    <option value="co_seller_5more_than_co_buyer">فروشندگان حقوقی بیش از 5 برابر تعداد خریداران حقوقی</option>
+                    <option value="co_to_real_cod1">1کد به کد حقوقی به حقیقی</option>   
+                    <option value="co_to_real_cod2">2کد به کد حقوقی به حقیقی</option>  
+                    <option value="real_to_co_cod1">کد به کد حقیقی به حقوقی1</option>
+                    <option value="real_to_co_cod2">کد به کد حقیقی به حقوقی2</option>
+                    <option value="month_price_floor">کف قیمت ماهانه</option>
+                    <option value="price_floor_increase_capital">کف قیمتی سه ماهه + افزایش نقدینگی</option>
+                    <option value="candle_inverted_hammer">کندل ستاره ثاقب یا چکش وارونه</option>
+                    <option value="candle_doji">کندل دوجی سنجاقک</option>
+                    <option value="smart_money_enter1">ورود پول هوشمند 1</option>
+                    <option value="smart_money_enter2">ورود پول هوشمند 2</option>
+                    <option value="smart_money_enter3">ورود پول هوشمند 3</option>
+                    <option value="smart_money_enter_co_tp_real_cod1">1ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod2">2ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod3">3ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                  
+                    
+
+                </select>
+
+                <!-- <input type="text" class="form-control mb-8 mr-sm-8" list="filter_name" placeholder="نوع فیلتر" name="prepared_filters" class="filter"> -->
+
+            </div>
+        </div> 
+
+        <div class="row mb-4 filtering">
+         
+            <div class="col ">
+                <select name="prepared_filters4" id="prepared_filters4" class="form-select form-select-lg mb-3" aria-label="Default select example">
+                    <option selected>انتخاب فیلتر مورد نظر</option>
+                    <option value="prediction_tomorrow">احتمال صف خرید فردا</option>
+                    <option value="volume_increase">افزایش حجم معاملات نسبت به روزهای قبل</option>
+                    <option value="up_clock_pattern">الگوی ساعت صعودی</option>
+                    <option value="up_to_down_today">امروز از مثبت به منفی رفته‌اند</option>
+                    <option value="down_to_up_today">امروز از منفی به مثبت رفته‌اند</option>
+                    <option value="maximum_neg_pos_final">بیشترین درصد منفی آخرین و پایانی در معاملات بورس</option>
+                    <option value="co_buyer_2more_co_seller">تعداد خریداران حقوقی بیش از 2 برابر تعداد فروشندگان حقوقی و قدرت خریداران حقیقی بیشتر از قدرت فروشندگان حقیقی</option>
+                    <option value="up_hammer">چکش صعودی</option>
+                    <option value="less_basis_volume">حجم مبنای کم</option>
+                    <option value="buy_volume_4more_sell">حجم خرید ۴ برابر حجم فروش</option>
+                    <option value="suspect_volume1">1حجم های مشکوک بازار</option>
+                    <option value="today_volume_2more_monthly_volume">حجم معاملات امروز دو برابر میانگین حجم ماهانه</option>
+                    <option value="buy_queue_last_3days">حداقل 3 روز اخیر صف خرید</option>
+                    <option value="sell_queue_last_3days">حداقل 3 روز اخیر صف فروش</option>
+                    <option value="exit_money">1خروج پول</option>
+                    <option value="exit_money2">2خروج پول</option>
+                    <option value="exit_money3">3خروج پول</option>
+                    <option value="exit_money_co_to_real_cod1">خروج پول و کد به کد حقیقی به حقوقی1</option>
+                    <option value="exit_money_co_to_real_cod2">خروج پول و کد به کد حقیقی به حقوقی2</option>
+                    <option value="exit_money_co_to_real_cod3">خروج پول و کد به کد حقیقی به حقوقی3</option>
+                    <option value="smart_money_exit1">1خروج پول هوشمند</option>
+                    <option value="smart_money_exit2">2خروج پول هوشمند</option>
+                    <option value="smart_money_exit3">3خروج پول هوشمند</option> 
+                    <option value="smart_money_exit_co_to_real_cod1">1خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod2">2خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod3">3خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="down_to_up_price">در حال برگشت قیمتی از منفی به مثبت</option>
+                    <option value="down_to_up_trend">در حال برگشت روند از منفی به مثبت</option>
+                    <option value="buy_queue_starting1">در حال صف خرید شدن1</option>
+                    <option value="buy_queue_starting2">در حال صف خرید شدن2</option>
+                    <option value="buy_queue_starting3">در حال صف خرید شدن3</option>
+                    <option value="buy_queue_starting4">در حال صف خرید شدن4</option>
+                    <option value="up_trend_channel_starting">شروع کانال صعودی احتمالی</option>
+                    <option value="sell_queue">صف خرید</option>
+                    <option value="buy_queue">صف فروش</option>  
+                    <option value="co_seller_5more_than_co_buyer">فروشندگان حقوقی بیش از 5 برابر تعداد خریداران حقوقی</option>
+                    <option value="co_to_real_cod1">1کد به کد حقوقی به حقیقی</option>   
+                    <option value="co_to_real_cod2">2کد به کد حقوقی به حقیقی</option>  
+                    <option value="real_to_co_cod1">کد به کد حقیقی به حقوقی1</option>
+                    <option value="real_to_co_cod2">کد به کد حقیقی به حقوقی2</option>
+                    <option value="month_price_floor">کف قیمت ماهانه</option>
+                    <option value="price_floor_increase_capital">کف قیمتی سه ماهه + افزایش نقدینگی</option>
+                    <option value="candle_inverted_hammer">کندل ستاره ثاقب یا چکش وارونه</option>
+                    <option value="candle_doji">کندل دوجی سنجاقک</option>
+                    <option value="smart_money_enter1">ورود پول هوشمند 1</option>
+                    <option value="smart_money_enter2">ورود پول هوشمند 2</option>
+                    <option value="smart_money_enter3">ورود پول هوشمند 3</option>
+                    <option value="smart_money_enter_co_tp_real_cod1">1ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod2">2ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod3">3ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                  
+                    
+
+                </select>
+
+                <!-- <input type="text" class="form-control mb-8 mr-sm-8" list="filter_name" placeholder="نوع فیلتر" name="prepared_filters" class="filter"> -->
+
+            </div>
+        </div> 
+
+        <div class="row mb-4 filtering">
+         
+            <div class="col ">
+                <select name="prepared_filters5" id="prepared_filters5" class="form-select form-select-lg mb-3" aria-label="Default select example">
+                    <option selected>انتخاب فیلتر مورد نظر</option>
+                    <option value="prediction_tomorrow">احتمال صف خرید فردا</option>
+                    <option value="volume_increase">افزایش حجم معاملات نسبت به روزهای قبل</option>
+                    <option value="up_clock_pattern">الگوی ساعت صعودی</option>
+                    <option value="up_to_down_today">امروز از مثبت به منفی رفته‌اند</option>
+                    <option value="down_to_up_today">امروز از منفی به مثبت رفته‌اند</option>
+                    <option value="maximum_neg_pos_final">بیشترین درصد منفی آخرین و پایانی در معاملات بورس</option>
+                    <option value="co_buyer_2more_co_seller">تعداد خریداران حقوقی بیش از 2 برابر تعداد فروشندگان حقوقی و قدرت خریداران حقیقی بیشتر از قدرت فروشندگان حقیقی</option>
+                    <option value="up_hammer">چکش صعودی</option>
+                    <option value="less_basis_volume">حجم مبنای کم</option>
+                    <option value="buy_volume_4more_sell">حجم خرید ۴ برابر حجم فروش</option>
+                    <option value="suspect_volume1">1حجم های مشکوک بازار</option>
+                    <option value="today_volume_2more_monthly_volume">حجم معاملات امروز دو برابر میانگین حجم ماهانه</option>
+                    <option value="buy_queue_last_3days">حداقل 3 روز اخیر صف خرید</option>
+                    <option value="sell_queue_last_3days">حداقل 3 روز اخیر صف فروش</option>
+                    <option value="exit_money">1خروج پول</option>
+                    <option value="exit_money2">2خروج پول</option>
+                    <option value="exit_money3">3خروج پول</option>
+                    <option value="exit_money_co_to_real_cod1">خروج پول و کد به کد حقیقی به حقوقی1</option>
+                    <option value="exit_money_co_to_real_cod2">خروج پول و کد به کد حقیقی به حقوقی2</option>
+                    <option value="exit_money_co_to_real_cod3">خروج پول و کد به کد حقیقی به حقوقی3</option>
+                    <option value="smart_money_exit1">1خروج پول هوشمند</option>
+                    <option value="smart_money_exit2">2خروج پول هوشمند</option>
+                    <option value="smart_money_exit3">3خروج پول هوشمند</option> 
+                    <option value="smart_money_exit_co_to_real_cod1">1خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod2">2خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="smart_money_exit_co_to_real_cod3">3خروج پول هوشمند و کد به کد حقیقی به حقوقی</option>
+                    <option value="down_to_up_price">در حال برگشت قیمتی از منفی به مثبت</option>
+                    <option value="down_to_up_trend">در حال برگشت روند از منفی به مثبت</option>
+                    <option value="buy_queue_starting1">در حال صف خرید شدن1</option>
+                    <option value="buy_queue_starting2">در حال صف خرید شدن2</option>
+                    <option value="buy_queue_starting3">در حال صف خرید شدن3</option>
+                    <option value="buy_queue_starting4">در حال صف خرید شدن4</option>
+                    <option value="up_trend_channel_starting">شروع کانال صعودی احتمالی</option>
+                    <option value="sell_queue">صف خرید</option>
+                    <option value="buy_queue">صف فروش</option>  
+                    <option value="co_seller_5more_than_co_buyer">فروشندگان حقوقی بیش از 5 برابر تعداد خریداران حقوقی</option>
+                    <option value="co_to_real_cod1">1کد به کد حقوقی به حقیقی</option>   
+                    <option value="co_to_real_cod2">2کد به کد حقوقی به حقیقی</option>  
+                    <option value="real_to_co_cod1">کد به کد حقیقی به حقوقی1</option>
+                    <option value="real_to_co_cod2">کد به کد حقیقی به حقوقی2</option>
+                    <option value="month_price_floor">کف قیمت ماهانه</option>
+                    <option value="price_floor_increase_capital">کف قیمتی سه ماهه + افزایش نقدینگی</option>
+                    <option value="candle_inverted_hammer">کندل ستاره ثاقب یا چکش وارونه</option>
+                    <option value="candle_doji">کندل دوجی سنجاقک</option>
+                    <option value="smart_money_enter1">ورود پول هوشمند 1</option>
+                    <option value="smart_money_enter2">ورود پول هوشمند 2</option>
+                    <option value="smart_money_enter3">ورود پول هوشمند 3</option>
+                    <option value="smart_money_enter_co_tp_real_cod1">1ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod2">2ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>
+                    <option value="smart_money_enter_co_tp_real_cod3">3ورود پول هوشمند و کد به کد حقوقی به حقیقی</option>        
+
+                </select>
+
+                <!-- <input type="text" class="form-control mb-8 mr-sm-8" list="filter_name" placeholder="نوع فیلتر" name="prepared_filters" class="filter"> -->
+
+            </div>
+        </div> 
+        <div class="row ">
+            <div class="col">  
+                <button class="btn btn-outline-success my-2 my-sm-0 btn-lg btn-block" type="submit">فیلتر</button>
+            </div>
+        </div>
+    </div>
+
+</form>
+<br><br><br>
+
+<table class="table table-dark">
+    <thead>
+
+        <tr>
+                
+            {% for item in indicator_name %} 
+            <th scope="col"> {{ item }}  </th>   
+            {% endfor %}
+            <th scope="col">نام سهم</th> 
+            <th scope="col">حجم معاملات</th>
+            <th scope="col">درصد تغییر قیمت پایانی</th>
+            <th scope="col">درصد تغییر قیمت نهایی</th>
+            <th scope="col">نوع سهم</th>
+            <th scope="col">P/E</th>
+        </tr>
+    </thead>        
+<br><br><br>
+
+
+    <tbody>        
+
+       
+        {% for item in result %}  
+        <tr>
+            {% for key, value in item.items %}         
+     
+                <td scope="row">{{ value }}</td>  
+                
+            {% endfor %}
+        </tr> 
+        {% endfor %}
+    </tbody>
+  </table> 
+<br><br><br>
+{{ filter_kind1 }}
+<br><br><br>
+{{ share_names }}
+<br><br><br>
+{{ result }}
+<br><br><br>
+
+{% endblock %}
+

@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Test Me!</h1>
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>        
+        <th scope="col">ADX</th>
+        <th scope="col">SAR</th>
+        <th scope="col">RSI</th>
+        <th scope="col">CCI</th>
+        <th scope="col">MACD_VALUE</th>
+        <th scope="col">MACD_SIGNAL</th>
+        <th scope="col">MACD_HISTOGRAM</th>
+        <th scope="col">MFI</th>
+        <th scope="col">MOMENTUM</th>
+        <th scope="col">VOLUME</th>
+        <th scope="col">BOLLINGER_UPPERBAND</th>
+        <th scope="col">BOLLINGER_MIDDLEBAND</th>
+        <th scope="col">BOLLINGER_LOWERBAND</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in final_result%}
+            <tr>
+                <th scope="row">{{ item.name }}</th>                
+                <td>{{ item.adx }}</td>
+                <td>{{ item.sar }}</td>
+                <td>{{ item.rsi }}</td>
+                <td>{{ item.cci }}</td>
+            </tr>            
+        {% endfor %}
+    </tbody>
+  </table> 
+  <br><br> 
+  adx : {{ adx_value }}
+  <br><br>
+  open price : {{ open_price }}
+  <br><br>
+ 
+  <br><br>
+  {{ openn }}
+  <br><br>
+  <!-- rsi : {{ rsi_value }} -->
+  <br><br><br><br><br><br>
+ {{ arr_arr }}
+{% endblock %}

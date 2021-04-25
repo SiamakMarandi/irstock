@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Shares Information!</h1>
+<br>
+<table class="table table-dark">
+    <tdead>
+      <tr>
+        <th scope="col">NAME</th> 
+        <th scope="col">INSTANCE_CODE</th>
+        <th scope="col">FULL_NAME</th>
+        <th scope="col">TYPE</th>
+        <th scope="col">FIRST_PRICE</th>
+        <th scope="col">CLOSE_PRICE</th>
+        <th scope="col">CLOSE_PRICE_CHANGE</th>
+        <th scope="col">CLOSE_PRICE_CHANGE_PERCENT</th>
+        <th scope="col">FINAL_PRICE</th>
+        <th scope="col">FINAL_PRICE_CHANGE</th>
+        <th scope="col">FINAL_PRICE_CHANGE_PERCENT</th>
+        <th scope="col">HIGHEST_PRICE</th>
+        <th scope="col">LOWEST_PRICE</th>
+        <th scope="col">EPS</th>
+        <th scope="col">PE</th>
+        <th scope="col">SELL_COUNT_1</th>
+        <th scope="col">SELL_COUNT_2</th>
+        <th scope="col">SELL_COUNT_3</th>
+        <th scope="col">SELL_VOLUME_1</th>
+        <th scope="col">SELL_VOLUME_2</th>
+        <th scope="col">SELL_VOLUME_3</th>
+        <th scope="col">SELL_PRICE_1</th>
+        <th scope="col">SELL_PRICE_2</th>
+        <th scope="col">SELL_PRICE_3</th>
+        <th scope="col">BUY_COUNT_1</th>
+        <th scope="col">BUY_COUNT_2</th>
+        <th scope="col">BUY_COUNT_3</th>
+        <th scope="col">BUY_VOLUME_1</th>
+        <th scope="col">BUY_VOLUME_2</th>
+        <th scope="col">BUY_VOLUME_3</th>
+        <th scope="col">BUY_PRICE_1</th>
+        <th scope="col">BUY_PRICE_2</th>
+        <th scope="col">BUY_PRICE_3</th>
+        <th scope="col">CO_BUY_COUNT</th>
+        <th scope="col">REAL_BUY_COUNT</th>
+        <th scope="col">REAL_SELL_COUNT</th>
+        <th scope="col">CO_SELL_COUNT</th>
+        <th scope="col">REAL_BUY_VOLUME</th>
+        <th scope="col">CO_BUY_VOLUME</th>
+        <th scope="col">REAL_SELL_VOLUME</th>
+        <th scope="col">CO_SELL_VOLUME</th>
+        <th scope="col">REAL_BUY_VALUE</th>
+        <th scope="col">CO_BUY_VALUE</th>
+        <th scope="col">REAL_SELL_VALUE</th>
+        <th scope="col">CO_SELL_VALUE</th>
+        <th scope="col">TRADE_NUMBER</th>
+        <th scope="col">TRADE_VOLUME</th>
+        <th scope="col">TRADE_VALUE</th>
+        <th scope="col">ALL_STOCKS</th>
+        <th scope="col">BASIS_VOLUME</th>   
+        
+        <th scope="col">N_DAY_3M</th>
+        <th scope="col">N_DAY_12M</th>
+        <th scope="col">N_PERCENT_12M</th>
+        <th scope="col">N_RANK_3M</th>
+        <th scope="col">N_RANK_12M</th>
+        <th scope="col">P_DAY_3M</th>
+        <th scope="col">P_DAY_12M</th>
+        <th scope="col">P_PERCENT_12M</th>
+        <th scope="col">P_RANK_3M</th>
+        <th scope="col">P_RANK_12M</th>
+        <th scope="col">TRADE_NDAY_3M</th>
+        <th scope="col">TRADE_NDAY_12M</th>
+        <th scope="col">TRADE_DAY_3M</th>
+        <th scope="col">TRADE_DAY_12M</th>
+        <th scope="col">TRADE_RANK_3M</th>
+        <th scope="col">TRADE_RANK_12M</th>
+        <th scope="col">TN_AVERAGE_3M</th>
+        <th scope="col">TN_AVERAGE_12M</th>
+        <th scope="col">TN_RANK_3M</th>
+        <th scope="col">TN_RANK_12M</th>
+        <th scope="col">TN_LAST_DAY</th>
+        <th scope="col">TVAL_AVERAGE_3M</th>
+        <th scope="col">TVAL_AVERAGE_12M</th>
+        <th scope="col">TVAL_RANK_3M</th>
+        <th scope="col">TVAL_RANK_12M</th>
+        <th scope="col">TVAL_LAST_DAY</th>
+        
+        <th scope="col">ADX</th>
+        <th scope="col">SAR</th>
+        <th scope="col">RSI</th>
+        <th scope="col">CCI</th>
+        <th scope="col">MACD_VALUE</th>
+        <th scope="col">MACD_SIGNAL</th>
+        <th scope="col">MACD_HISTOGRAM</th>
+        <th scope="col">MFI</th>
+        <th scope="col">MOMENTUM</th>
+        <th scope="col">VOLUME</th>
+        <th scope="col">BOLLINGER_UPPERBAND</th>
+        <th scope="col">BOLLINGER_MIDDLEBAND</th>
+        <th scope="col">BOLLINGER_LOWERBAND</th>
+        <th scope="col">ICHIMOKU_TENKEN_SEN</th>
+        <th scope="col">ICHIMOKU_KIJUN_SEN</th>
+        <th scope="col">EMA_5</th>
+        <th scope="col">EMA_10</th>
+        <th scope="col">EMA_20</th>
+        <th scope="col">EMA_30</th>
+        <th scope="col">EMA_50</th>
+        <th scope="col">SMA_5</th>
+        <th scope="col">SMA_10</th>
+        <th scope="col">SMA_20</th>
+        <th scope="col">SMA_30</th>
+        <th scope="col">SMA_50</th>
+        <th scope="col">WILLIAMS_PERCENT_RANGE</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in shares%}
+            <tr>
+                <td>{{ item.NAME }}</td> 
+                <td>{{ item.INSTANCE_CODE }}</td>
+                <td>{{ item.FULL_NAME }}</td>
+                <td>{{ item.TYPE }}</td>
+                <td>{{ item.FIRST_PRICE }}</td>
+                <td>{{ item.CLOSE_PRICE }}</td>
+                <td>{{ item.CLOSE_PRICE_CHANGE }}</td>
+                <td>{{ item.CLOSE_PRICE_CHANGE_PERCENT }}</td>
+                <td>{{ item.FINAL_PRICE }}</td>
+                <td>{{ item.FINAL_PRICE_CHANGE }}</td>
+                <td>{{ item.FINAL_PRICE_CHANGE_PERCENT }}</td>
+                <td>{{ item.HIGHEST_PRICE }}</td>
+                <td>{{ item.LOWEST_PRICE }}</td>
+                <td>{{ item.EPS }}</td>
+                <td>{{ item.PE }}</td>
+                <td>{{ item.SELL_COUNT_1 }}</td>
+                <td>{{ item.SELL_COUNT_2 }}</td>
+                <td>{{ item.SELL_COUNT_3 }}</td>
+                <td>{{ item.SELL_VOLUME_1 }}</td>
+                <td>{{ item.SELL_VOLUME_2 }}</td>
+                <td>{{ item.SELL_VOLUME_3 }}</td>
+                <td>{{ item.SELL_PRICE_1 }}</td>
+                <td>{{ item.SELL_PRICE_2 }}</td>
+                <td>{{ item.SELL_PRICE_3 }}</td>
+                <td>{{ item.BUY_COUNT_1 }}</td>
+                <td>{{ item.BUY_COUNT_2 }}</td>
+                <td>{{ item.BUY_COUNT_3 }}</td>
+                <td>{{ item.BUY_VOLUME_1 }}</td>
+                <td>{{ item.BUY_VOLUME_2 }}</td>
+                <td>{{ item.BUY_VOLUME_3 }}</td>
+                <td>{{ item.BUY_PRICE_1 }}</td>
+                <td>{{ item.BUY_PRICE_2 }}</td>
+                <td>{{ item.BUY_PRICE_3 }}</td>
+                <td>{{ item.CO_BUY_COUNT }}</td>
+                <td>{{ item.REAL_BUY_COUNT }}</td>
+                <td>{{ item.REAL_SELL_COUNT }}</td>
+                <td>{{ item.CO_SELL_COUNT }}</td>
+                <td>{{ item.REAL_BUY_VOLUME }}</td>
+                <td>{{ item.CO_BUY_VOLUME }}</td>
+                <td>{{ item.REAL_SELL_VOLUME }}</td>
+                <td>{{ item.CO_SELL_VOLUME }}</td>
+                <td>{{ item.REAL_BUY_VALUE }}</td>
+                <td>{{ item.CO_BUY_VALUE }}</td>
+                <td>{{ item.REAL_SELL_VALUE }}</td>
+                <td>{{ item.CO_SELL_VALUE }}</td>
+                <td>{{ item.TRADE_NUMBER }}</td>
+                <td>{{ item.TRADE_VOLUME }}</td>
+                <td>{{ item.TRADE_VALUE }}</td>
+                <td>{{ item.ALL_STOCKS }}</td>
+                <td>{{ item.BASIS_VOLUME }}</td>   
+                                
+                <td>{{ item.N_DAY_3M }}</td>
+                <td>{{ item.N_DAY_12M }}</td>
+                <td>{{ item.N_PERCENT_12M }}</td>
+                <td>{{ item.N_RANK_3M }}</td>
+                <td>{{ item.N_RANK_12M }}</td>
+                <td>{{ item.P_DAY_3M }}</td>
+                <td>{{ item.P_DAY_12M }}</td>
+                <td>{{ item.P_PERCENT_12M }}</td>
+                <td>{{ item.P_RANK_3M }}</td>
+                <td>{{ item.P_RANK_12M }}</td>
+                <td>{{ item.TRADE_NDAY_3M }}</td>
+                <td>{{ item.TRADE_NDAY_12M }}</td>
+                <td>{{ item.TRADE_DAY_3M }}</td>
+                <td>{{ item.TRADE_DAY_12M }}</td>
+                <td>{{ item.TRADE_RANK_3M }}</td>
+                <td>{{ item.TRADE_RANK_12M }}</td>
+                <td>{{ item.TN_AVERAGE_3M }}</td>
+                <td>{{ item.TN_AVERAGE_12M }}</td>
+                <td>{{ item.TN_RANK_3M }}</td>
+                <td>{{ item.TN_RANK_12M }}</td>
+                <td>{{ item.TN_LAST_DAY }}</td>
+                <td>{{ item.TVAL_AVERAGE_3M }}</td>
+                <td>{{ item.TVAL_AVERAGE_12M }}</td>
+                <td>{{ item.TVAL_RANK_3M }}</td>
+                <td>{{ item.TVAL_RANK_12M }}</td>
+                <td>{{ item.TVAL_LAST_DAY }}</td>
+
+                <td>{{ item.ADX }}</td>
+                <td>{{ item.SAR }}</td>
+                <td>{{ item.RSI }}</td>
+                <td>{{ item.CCI }}</td>
+                <td>{{ item.MACD_VALUE }}</td>
+                <td>{{ item.MACD_SIGNAL }}</td>
+                <td>{{ item.MACD_HISTOGRAM }}</td>
+                <td>{{ item.MFI }}</td>
+                <td>{{ item.MOMENTUM }}</td>
+                <td>{{ item.VOLUME }}</td>
+                <td>{{ item.BOLLINGER_UPPERBAND }}</td>
+                <td>{{ item.BOLLINGER_MIDDLEBAND }}</td>
+                <td>{{ item.BOLLINGER_LOWERBAND }}</td>
+                <td>{{ item.ICHIMOKU_TENKEN_SEN }}</td>
+                <td>{{ item.ICHIMOKU_KIJUN_SEN }}</td>
+                <td>{{ item.EMA_5 }}</td>
+                <td>{{ item.EMA_10 }}</td>
+                <td>{{ item.EMA_20 }}</td>
+                <td>{{ item.EMA_30 }}</td>
+                <td>{{ item.EMA_50 }}</td>
+                <td>{{ item.SMA_5 }}</td>
+                <td>{{ item.SMA_10 }}</td>
+                <td>{{ item.SMA_20 }}</td>
+                <td>{{ item.SMA_30 }}</td>
+                <td>{{ item.SMA_50 }}</td>
+                <td>{{ item.WILLIAMS_PERCENT_RANGE }}</td>
+
+
+            </tr>            
+        {% endfor %}
+    </tbody>
+  </table> 
+  <br><br> 
+  
+
+
+{% endblock %}

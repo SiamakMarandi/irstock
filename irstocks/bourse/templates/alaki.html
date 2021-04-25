@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class=my_h2>I am from inside my_templates dir , register.html page</h2>
+<button type='button' class='btn btn-danger' id='b1'>Click Me</button>
+<div id=s1>Ya Allah</div>
+<div id=t1></div>
+<div class='input-form'>
+    <input type='text' placeholder='Enter name' id='name_1' class='txt' >
+    <input type='text' placeholder='Enter email' id='email_1' class='txt' >
+   </div>
+<input type='button' id='but_add' value='Add new'>
+
+<script>
+$(document).ready(function() { 
+///////////////////////
+$("#b1").click(function(){
+$("#t1").html('You clicked the button');
+$("#s1").clone();
+});
+/////////////////////
+
+});
+
+$('#but_add').click(function(){
+
+    // Create clone of <div class='input-form'>
+    var newel = $('.input-form:last').clone();
+
+    // Add after last <div class='input-form'>
+    $(newel).insertAfter(".input-form:last");
+    });
+
+    $('.txt').focus(function(){
+    $(this).css('border-color','red');
+    });
+
+    $('.txt').focusout(function(){
+    $(this).css('border-color','initial');
+});
+
+</script>
+
+{% endblock %}

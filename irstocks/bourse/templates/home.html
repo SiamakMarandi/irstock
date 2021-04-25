@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<br><br><br>
+{% if api %}
+
+  {% if api == "Error..." %}
+      there is an error
+    
+  {% else %}   
+  {% if user.is_authenticated %}
+  Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
+  {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a>
+  {% endif %} 
+    <br><br><br>
+
+    <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">نام نماد</th>
+            <th scope="col">نام کامل نماد</th>
+            <th scope="col">آخرین قیمت</th>
+            <th scope="col">قیمت پایانی</th>
+            <th scope="col">درصد تغییرات قیمت پایانی</th>
+            <th scope="col">حجم خرید حقیقی</th>
+            <th scope="col">حجم خرید حقوقی </th>
+            <th scope="col">حجم فروش حقیقی</th>
+            <th scope="col">حجم فروش حقوقی</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>{{ api.name }}</td>
+            <td>{{ api.full_name }}</td>
+            <td>{{ api.close_price }}</td>
+            <td>{{ api.final_price }}</td>
+            <td>{{ api.final_price_change_percent }}</td>
+            <td>{{ api.real_buy_volume }}</td>
+            <td>{{ api.co_buy_volume }}</td>
+            <td>{{ api.real_sell_volume }}</td>
+            <td>{{ api.co_sell_volume }}</td>            
+          </tr>
+
+        </tbody>
+      </table>
+    
+
+  {% endif %}
+{% endif %}
+
+{% endblock %}
