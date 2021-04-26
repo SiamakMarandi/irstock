@@ -2,6 +2,5 @@
 *~
 /.vscode
 __pycache__
-/stovkvenv
 db.sqlite3
 .DS_Store

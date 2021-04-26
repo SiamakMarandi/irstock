@@ -108,8 +108,15 @@ def prepared_filter(request):
         else:
             filter_kind1 = ''
             filter_kind2 = ''
+            filter_kind3 = ''
+            filter_kind4 = ''
+            filter_kind5 = ''
     except Exception as e:
         filter_kind1 = ''
+        filter_kind2 = ''
+        filter_kind3 = ''
+        filter_kind4 = ''
+        filter_kind5 = ''
         value = "Error"
 
 
