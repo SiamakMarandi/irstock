@@ -11,7 +11,7 @@ from .filters_algos import prepared_filters
 from .filters_algos import shares_model_filler
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
-token = "36f3d0f1d4ea646bc316b380375a3c33"
+token = ""
 
 
 # Create your views here.
